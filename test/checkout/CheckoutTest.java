@@ -51,16 +51,6 @@ class CheckoutTest {
 	}
 	
 	@Test
-	void testTotalIsTenForTwoItemsWithPriceFive() {
-		Checkout checkout = new Checkout();
-		Item itemA = new Item(new Euro(5));
-		checkout.scan(itemA);
-		checkout.scan(itemA);
-		Euro price = checkout.getTotal();
-		assertEquals(new Euro(10), price);
-	}
-	
-	@Test
 	void testTotalIsElevenForTwoItemsWithDifferentPrice() {
 		Checkout checkout = new Checkout();
 		Item itemA = new Item(new Euro(7));
@@ -70,5 +60,15 @@ class CheckoutTest {
 		Euro price = checkout.getTotal();
 		assertEquals(new Euro(11), price);
 	}
-
+	
+	@Test
+	void testTotalIsTenForTwoItemsWithPrice6BecauseofDiscount() {
+		Checkout checkout = new Checkout();
+		Item itemA = new Item(new Euro(6));
+		checkout.scan(itemA);
+		checkout.scan(itemA);
+		Euro price = checkout.getTotal();
+		assertEquals(new Euro(10), price);
+	}
+	
 }
